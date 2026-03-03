@@ -1,0 +1,371 @@
+/*https://github.com/Sofia20092003/Portafolio.git*/
+
+/*Variables Globales
+    :root es el contenedor global del documento.
+    Aquí se definen variables CSS reutilizables en todo el proyecto.
+    Esto facilita cambiar colores o fuentes en un solo lugar.
+*/
+:root { 
+    --primary-accent: #721717; 
+    --text-main: #721717; 
+    --text-main2: #7f2b2b; 
+    --text-secondary: #777; 
+    --background-card: #fff; 
+    --background-body: #f7f7f7; 
+    --font-family-main: 'Inter', 'Roboto', 'Segoe UI', sans-serif; 
+}
+
+/*Estilos generales del body*/
+body { 
+    font-family: var(--font-family-main); 
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4ebf5 100%); 
+    /*
+    Gradiente diagonal como fondo de la página.
+    Da un estilo moderno y suave.
+    */
+    color: var(--text-main); 
+    line-height: 1.6; /* Mejora la legibilidad del texto */
+    margin: 0 auto; /* Centra el contenido horizontalmente */
+    padding: 40px 20px; /* Espacio interno */
+    max-width: 800px; /* Limita el ancho del contenido */
+    
+
+    /*Cards article y section*/
+    article{ 
+        background-color: var(--background-card); 
+        padding: 25px 25px 25px 35px; border-radius: 16px; 
+        margin-bottom: 25px; position: relative; 
+        border: none; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04); 
+        transition: transform 0.4s ease, box-shadow 0.4s ease; 
+    } 
+    
+    article:hover{ 
+        transform: translateY(-5px); 
+        box-shadow: 0 20px 40px rgba(108, 23, 23, 0.306); 
+    } 
+    
+    section{ 
+        background-color: var(--background-card); 
+        padding: 25px 25px 25px 35px; 
+        border-radius: 16px; 
+        margin-bottom: 25px; 
+        position: relative; /*Necesario para que los elementos absolute dentro de estos contenedores se posicionen respecto a ellos.*/
+        border: none; 
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04); /* Sombra suave para efecto tarjeta */
+        transition: transform 0.4s ease, box-shadow 0.4s ease; /* Animaciones suaves */
+    } 
+    
+    section:hover{ 
+        transform: translateY(-5px); /* Efecto de elevación */
+        box-shadow: 0 20px 40px rgba(108, 23, 23, 0.306); 
+    } 
+    
+    /* Barra decorativa lateral */
+    section::before { 
+        content: ""; 
+        position: absolute; 
+        left: 0; 
+        top: 20px; 
+        bottom: 20px; 
+        width: 5px; 
+        background: linear-gradient(to bottom, var(--primary-accent), #cd6c6c); 
+        border-radius: 0 4px 4px 0; 
+    }
+}
+
+/*Header y navegación*/
+header{ 
+    nav{ 
+        display: flex; 
+        justify-content: end; 
+        gap: 15px; 
+        
+        a{ 
+            text-decoration: none; 
+            color: var(--text-main); 
+            border: 1px solid var(--text-main); 
+            padding: 5px 10px; 
+            border-radius: 4px; 
+            transition: all 0.3s ease; 
+        } 
+        
+        a:hover{ 
+            color: var(--background-card); 
+            background-color: var(--text-main2); 
+            transform: translateY(-2px);
+        } 
+    } 
+    
+    section{ 
+        display: flex; 
+        justify-content: space-evenly; 
+        margin-top: 15px; 
+        
+        img{ 
+            object-fit: cover; /*Ayuda a centrar la imagen sin distorsionarse aunque se cambie el tamaño original*/
+            width: 200px; 
+            height: 200px; 
+            margin: 10px; 
+            border-radius: 12px; 
+        } 
+        
+        div{ 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            margin: 10px; 
+            
+            h1{ 
+                font-size: 200%; 
+                font-weight: 700; 
+                margin-bottom: 1px; 
+            } 
+            
+            p{ 
+                font-size: medium; 
+                font-weight: lighter; 
+                margin-top: 0px; 
+            } 
+        } 
+    } 
+}
+
+.experiencia{
+    display: flex;
+    justify-content: space-between;
+
+    img{
+        object-fit: cover; 
+        width: 90px; 
+        height: 90px;  
+        padding: 10px;
+        border-radius: 12px; 
+    }
+}
+
+.web{
+    display: flex;
+    justify-content: space-between;
+
+    img{
+        object-fit: cover; 
+        width: 90px; 
+        height: 90px;  
+        padding: 10px;
+        border-radius: 12px; 
+    }
+}
+
+/*Crea un layout responsive automático*/
+.skills{ 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+    gap: 20px; 
+    
+    div{ 
+        display: flex; 
+        justify-content: space-between; 
+        margin-bottom: 5px; 
+        font-size: 0.9rem; 
+        font-weight: bold; 
+    } 
+}
+
+/* BARRAS DE PROGRESO */
+.barra-contenedor{ 
+    height: 8px; 
+    background-color: #f1f1f1; 
+    border-radius: 4px; 
+    overflow: hidden; /* Oculta partes de la barra que sobresalgan */
+}
+
+.barra{ 
+    height: 100%; 
+    background-color: var(--primary-accent); 
+    border-radius: 4px; 
+    transition: width 0.5s ease; 
+    width: 50%; /* Degradado horizontal para simular carga */ 
+    background: linear-gradient(90deg, var(--primary-accent), #eb9494); 
+    border-radius: 4px; 
+    transition: width 1s cubic-bezier(0.4, 0, 0.2, 1); /* Animación más fluida */ 
+}
+
+main{ 
+    h2{ 
+        font-size: 1.2rem; 
+        text-transform: uppercase; 
+        color: var(--primary-accent); 
+        margin-top: 0; 
+        margin-bottom: 15px; 
+    } 
+}
+
+/* IDIOMAS */
+.idiomas{ 
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 10px; 
+    
+    p{ 
+        background-color: var(--background-body); 
+        border: 1px solid #ddd; 
+        padding: 8px 15px; 
+        border-radius: 20px; 
+        font-size: 0.9rem; 
+        transition: all 0.3s ease; 
+        cursor: default; 
+    } 
+    
+    p:hover{ 
+        border-color: var(--primary-accent); 
+        background-color: var(--background-card); 
+        transform: scale(1.03); 
+    } 
+}
+
+.proyectos{ 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
+    gap: 20px; 
+
+    img{
+        object-fit: cover; 
+        width: 90px; 
+        height: 90px;  
+        padding: 10px;
+        border-radius: 12px; 
+    }
+    
+    article{ 
+        border: 1px solid #ddd; 
+        border-radius: 8px; 
+        padding: 15px; 
+        display: flex; 
+        flex-direction: column; 
+        transition: all 0.3s ease; 
+    } 
+    
+    article:hover{ 
+        transform: translateY(-5px); 
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
+    } 
+    
+    h3{ color: var(--primary-accent); 
+        font-size: 1.1rem; 
+        margin-top: 0; 
+        margin-bottom: 8px; 
+    } 
+    
+    p{ 
+        font-size: 0.9rem; 
+        color: var(--text-secondary); 
+        flex-grow: 1; margin-bottom: 15px; 
+    } 
+    
+    a{ 
+        text-decoration: none; 
+        color: var(--text-main); 
+        font-weight: bold; 
+        font-size: 0.9rem; 
+        margin-top: auto; 
+        display: flex; 
+        align-items: center; 
+    } 
+    
+    a:hover{ 
+        color: var(--primary-accent); 
+    } 
+}
+
+/* FORMULARIO CONTACTO */
+.contacto{ 
+    display: grid; 
+    gap: 15px; 
+    
+    h2{ 
+        margin-top: 10px; 
+        margin-bottom: 5px; 
+    } 
+    
+    p{ 
+        margin-top: 5px; 
+    } 
+    
+    div{ 
+        display: flex; 
+        flex-direction: column; 
+        
+        label{ 
+            font-size: 0.9rem; 
+            font-weight: bold; 
+            margin-bottom: 5px; 
+        } 
+        
+        input{ 
+            border: 1px solid #ddd; 
+            border-radius: 4px; 
+            padding: 10px; 
+            font-family: var(--font-family-main); 
+        } 
+        
+        input:focus{ 
+            border-color: var(--primary-accent); 
+            outline: none; 
+        } 
+        
+        textarea{ 
+            border: 1px solid #ddd; 
+            border-radius: 4px; 
+            padding: 10px; 
+            font-family: var(--font-family-main); 
+        } 
+        
+        textarea:focus{ 
+            border-color: var(--primary-accent); 
+            outline: none; 
+        } 
+    } 
+    
+    button{ 
+        background-color: var(--primary-accent); 
+        color: var(--background-card); 
+        border: none; 
+        padding: 12px 20px; 
+        border-radius: 4px; 
+        cursor: pointer; 
+        font-weight: bold; 
+        font-size: 1rem; 
+        transition: background-color 0.3s ease; 
+    } 
+    
+    button:hover{ 
+        opacity: 0.8; 
+    } 
+} 
+
+.pie-de-pagina{ 
+    display: flex; 
+    justify-content: space-between; 
+    gap: 15px; 
+    
+    nav{ 
+        display: flex; 
+        align-items: center; 
+        gap: 15px; 
+        
+        a{ 
+            text-decoration: none; 
+            color: var(--text-main); 
+            border: 1px solid var(--text-main); 
+            padding: 5px 10px; 
+            border-radius: 4px; 
+            transition: all 0.3s ease; 
+        } 
+        
+        a:hover{ 
+            color: var(--background-card); 
+            background-color: var(--text-main2); 
+            transform: translateY(-2px); 
+        } 
+    } 
+}
